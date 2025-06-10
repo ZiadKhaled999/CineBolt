@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-accent: #6639a6;
+  --secondary-accent: #7f4fc3;
+  --dark-accent: #4f2c80;
+  --background-primary: #0F0A1E;
+  --background-secondary: #130F21;
+  --text-primary: #FFFFFF;
+  --text-secondary: #e6e6e6;
+  --text-tertiary: #B0B0B0;
+  --error: #ff4d4d;
+  --border-color: rgba(79, 44, 128, 0.2);
+  --bg-overlay: rgba(19, 15, 33, 0.8);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[var(--background-primary)] text-[var(--text-primary)] font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-[var(--text-primary)];
+  }
+
+  html {
+    @apply dark;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 font-semibold transition-all duration-200 rounded-lg bg-[var(--primary-accent)] hover:bg-[var(--secondary-accent)] text-white shadow-lg hover:shadow-xl active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 font-semibold transition-all duration-200 rounded-lg border border-[var(--primary-accent)] text-[var(--primary-accent)] hover:bg-[var(--primary-accent)] hover:text-white shadow-lg hover:shadow-xl active:scale-95;
+  }
+
+  .nav-link {
+    @apply text-[var(--text-secondary)] hover:text-[var(--primary-accent)] transition-colors duration-200;
+  }
+
+  .card {
+    @apply p-6 rounded-xl bg-[var(--background-secondary)] shadow-lg border border-[var(--border-color)] backdrop-blur-sm;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 bg-[var(--background-secondary)] border border-[var(--border-color)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-accent)] text-[var(--text-primary)] placeholder-[var(--text-tertiary)];
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dark-accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-accent);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  @apply fixed top-0 left-0 w-full h-screen bg-[var(--background-primary)] transform transition-transform duration-300 ease-in-out z-50;
+}
+
+.mobile-nav.open {
+  @apply translate-x-0;
+}
+
+.mobile-nav.closed {
+  @apply -translate-x-full;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-in-out;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  @apply w-8 h-8 border-4 border-[var(--primary-accent)] border-t-transparent rounded-full animate-spin;
+}
+
+/* Glass Effect */
+.glass-effect {
+  @apply bg-[var(--bg-overlay)] backdrop-blur-lg border border-[var(--border-color)];
+}
+
+/* Responsive Typography */
+@layer utilities {
+  .h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+  
+  .h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+  
+  .h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+  }
+  
+  .body-large {
+    @apply text-lg md:text-xl;
+  }
+  
+  .body {
+    @apply text-base md:text-lg;
+  }
+  
+  .body-small {
+    @apply text-sm md:text-base;
+  }
+}
+
+/* Custom animations for enhanced UX */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, hsl(0, 0%, 98%) 0%, hsl(240, 5%, 64.9%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced card hover effects */
+.movie-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 10px 10px -5px rgb(0 0 0 / 0.1);
+}
+
+/* Score display enhancements */
+.score-card {
+  background: linear-gradient(135deg, hsl(240, 3.7%, 15.9%) 0%, hsl(240, 3.7%, 18%) 100%);
+  border: 1px solid hsl(240, 3.7%, 20%);
+  transition: all 0.2s ease;
+}
+
+.score-card:hover {
+  background: linear-gradient(135deg, hsl(240, 3.7%, 18%) 0%, hsl(240, 3.7%, 21%) 100%);
+  border-color: hsl(207, 90%, 54%);
+}
+
+/* Verdict styling based on type */
+.verdict-success {
+  background: linear-gradient(135deg, hsl(142, 76%, 36%, 0.1) 0%, hsl(142, 76%, 36%, 0.05) 100%);
+  border-color: hsl(142, 76%, 36%, 0.2);
+}
+
+.verdict-warning {
+  background: linear-gradient(135deg, hsl(48, 96%, 53%, 0.1) 0%, hsl(48, 96%, 53%, 0.05) 100%);
+  border-color: hsl(48, 96%, 53%, 0.2);
+}
+
+.verdict-info {
+  background: linear-gradient(135deg, hsl(207, 90%, 54%, 0.1) 0%, hsl(207, 90%, 54%, 0.05) 100%);
+  border-color: hsl(207, 90%, 54%, 0.2);
+}
+
+.verdict-destructive {
+  background: linear-gradient(135deg, hsl(0, 62.8%, 30.6%, 0.1) 0%, hsl(0, 62.8%, 30.6%, 0.05) 100%);
+  border-color: hsl(0, 62.8%, 30.6%, 0.2);
+}
